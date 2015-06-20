@@ -38,9 +38,8 @@ public class ConsultarEnsaio implements InterfaceCommand {
 			
 			List<Ensaios> listaEnsaio = new ArrayList<Ensaios>();
 
-			if (request.getParameter("codigo").equals("cEnsaio")) {
-
-				Usuario integrante = (Usuario) request.getSession().getAttribute("usuarioLogado");
+			if(request.getParameter("codigo") != null){
+			if (request.getParameter("codigo").equals("cEnsaio")) {				
 				
 				Collection<EscolaDeSamba> escolas = (Collection<EscolaDeSamba>) escolaDAO.obterEscolaPorIntegrante(Integer.valueOf(request.getParameter("id")));
 				
@@ -60,18 +59,15 @@ public class ConsultarEnsaio implements InterfaceCommand {
 						System.out.println(listaEnsaio);
 					}
 					
-				
-							
-						
 					
-
 				}
 
 				request.setAttribute("ensaio", listaEnsaio);
 				
 				return "consulta_ensaio_integrante.jsp";
 
-			} else {
+			} 
+			}else {
 
 				EscolaDeSamba sc = (EscolaDeSamba) request.getSession().getAttribute("usuarioLogado");
 

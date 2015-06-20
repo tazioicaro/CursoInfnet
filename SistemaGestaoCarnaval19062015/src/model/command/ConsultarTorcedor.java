@@ -38,6 +38,7 @@ public class ConsultarTorcedor implements InterfaceCommand {
 			}else{
 			request.setAttribute("torcedores", torcedorDAO.consultarTorcedores(Integer.valueOf(request.getParameter("id"))));
 			}
+			
 		}catch(SQLException e) {
 			request.setAttribute("mensagem", "Não foi consultar "+ e.getMessage());
 		}

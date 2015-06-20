@@ -64,10 +64,6 @@ private InterfacePool pools;
 //	SELECIONAR TODAS AS ESCOLAS QUE QUE FAZ PARTE O INTEGRANTE.
 //	SELECIONAR TODOS OS TORCEDORES DESSAS ESCOLAS. (COM DISTINCT)
 	
-	
-	
-	
-
 	@Override
 	public boolean incluir(Usuario torcedor, int idEscolaSamba)
 			throws SQLException {
@@ -145,7 +141,7 @@ private InterfacePool pools;
 			con =pools.getConnection();
 			
 			ps = con.prepareStatement(sql);
-			ps.setLong(1, idUsuario);
+			ps.setInt(1, idUsuario);
 			
 		
 			
