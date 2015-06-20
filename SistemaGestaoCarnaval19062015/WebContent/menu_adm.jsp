@@ -19,7 +19,7 @@
 	<li style="list-style: square;"><a href="Controlador?opc=consultarEscola" style="font-family: sans-serif; color: navy; font-size: 14px;" target="corpo">Consultar Escola de Samba</a></li>
 	<li style="list-style: square;"><a href="Controlador?opc=editarJurados" style="font-family: sans-serif; color: navy; font-size: 14px;" target="corpo">Cadastrar Jurados</a></li>	
 	<li style="list-style: square;"><a href="Controlador?opc=editarQuesito" style="font-family: sans-serif; color: navy; font-size: 14px;" target="corpo">Cadastrar Quesitos</a></li>	
-	<li style="list-style: square;"><a href="Controlador?opc=cadastrarGrupo" style="font-family: sans-serif; color: navy; font-size: 14px;" target="corpo">Cadastrar Grupo</a></li>
+	<li style="list-style: square;"><a href="Controlador?opc=editarGrupo" style="font-family: sans-serif; color: navy; font-size: 14px;" target="corpo">Cadastrar Grupo</a></li>
 	<li style="list-style: square;"><a href="Controlador?opc=editarDesfile" style="font-family: sans-serif; color: navy; font-size: 14px;" target="corpo">Cadastrar Desfile</a></li>
 	<li style="list-style: square;"><a href="Controlador?opc=consultarDesfile" style="font-family: sans-serif; color: navy; font-size: 14px;" target="corpo">Consultar Desfile</a></li>
 	<li style="list-style: square;"><a href="Controlador?opc=consultarCarnaval" style="font-family: sans-serif; color: navy; font-size: 14px;" target="corpo">Consultar Carnaval</a></li>
