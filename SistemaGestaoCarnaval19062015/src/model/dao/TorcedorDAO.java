@@ -18,15 +18,15 @@ private InterfacePool pools;
 		this.pools = pools;
 	}
 	
-	//CONSULTA ORIGINAL PRESERVADA
-	/*@Override
+//	SELECIONAR TODOS OS TORCEDORES DESSAS ESCOLAS. (COM DISTINCT)	
+	@Override
 	public Set<Usuario> consultarTorcedores(int idTorcedor) throws SQLException {
-		String sql = "SELECT u.* "
+		String sql = "SELECT distinct u.* "
 				+ "   FROM usuario u, torcedor_samba ts "
 				+ "   WHERE ts.torcedor = u.id "
-				+ "   AND ts.samba_id = (SELECT ts2.samba_id "
+				+ "   AND ts.samba= ANY (SELECT ts2.samba"
 				+ "						 FROM torcedor_samba ts2 "
-				+ "						 WHERE ts2.torcedor_id = ?) "
+				+ "						 WHERE ts2.torcedor= ?) "
 				+ "   ORDER BY u.nome";
 		
 		Set<Usuario> usuario = null;
@@ -57,52 +57,12 @@ private InterfacePool pools;
 		}
 		
 		return usuario;
-	}*/
+	}
 	
 
 
 //	SELECIONAR TODAS AS ESCOLAS QUE QUE FAZ PARTE O INTEGRANTE.
 //	SELECIONAR TODOS OS TORCEDORES DESSAS ESCOLAS. (COM DISTINCT)
-	
-	
-	@Override
-	public Set<Usuario> consultarTorcedores(int idUsuario) throws SQLException {
-		String sql ="SELECT distinct u.nome nome_torcedor, " +
-					"u.id, u.nome, u.email, u.senha, u.tipo_id " +
-					"from samba e, integrantes_samba ie, torcedor_samba te, usuario u " +
-					"where e.id = ie.samba_id and ie.integrante_id = ? and ie.samba_id = te.samba and te.torcedor = u.id "; 
-
-		
-		Set<Usuario> usuario = null;
-		
-		PreparedStatement ps = null;
-		
-		
-		try {
-			usuario = new HashSet<Usuario>();
-			
-			ps = pools.getConnection().prepareStatement(sql);
-			ps.setLong(1, idUsuario);
-			
-			ResultSet rs = null;
-			
-			rs = ps.executeQuery();
-			
-			while(rs.next()){
-				usuario.add(new Usuario(rs.getInt("id"), 
-										 rs.getString("nome_torcedor"), 
-										 rs.getString("email"), 
-										 rs.getString("senha"), 
-										 rs.getInt("tipo_id")));
-			}
-			
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
-		
-		return usuario;
-	}
-	
 	
 	
 	
