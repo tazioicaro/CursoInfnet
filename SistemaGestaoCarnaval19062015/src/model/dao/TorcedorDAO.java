@@ -59,8 +59,8 @@ private InterfacePool pools;
 		return usuario;
 	}*/
 	
-//	
-//	
+
+
 //	SELECIONAR TODAS AS ESCOLAS QUE QUE FAZ PARTE O INTEGRANTE.
 //	SELECIONAR TODOS OS TORCEDORES DESSAS ESCOLAS. (COM DISTINCT)
 	
@@ -162,6 +162,52 @@ private InterfacePool pools;
 			pools.liberarConnection(con);
 		}
 		return id;
-	}	
+	}
+	
+	
+	@Override
+	public Set<Usuario> consultarTorcedoresPorEscolaDoIntegrante (int idUsuario) throws SQLException {
+		String sql ="SELECT distinct u.nome nome_torcedor, " +
+					"u.id, u.nome, u.email, u.senha, u.tipo_id " +
+					"from samba e, integrantes_samba ie, torcedor_samba te, usuario u " +
+					"where e.id = ie.samba_id and ie.integrante_id = ? and ie.samba_id = te.samba_id and te.torcedor_id = u.id "; 
+
+		
+		Set<Usuario> usuario = null;
+		
+		PreparedStatement ps = null;
+		Connection con = null;
+		ResultSet rs = null;
+		
+		
+		try {
+			usuario = new HashSet<Usuario>();
+			con =pools.getConnection();
+			
+			ps = con.prepareStatement(sql);
+			ps.setLong(1, idUsuario);
+			
+		
+			
+			rs = ps.executeQuery();
+			
+			while(rs.next()){
+				usuario.add(new Usuario(rs.getInt("id"), 
+										 rs.getString("nome_torcedor"), 
+										 rs.getString("email"), 
+										 rs.getString("senha"), 
+										 rs.getInt("tipo_id")));
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally{
+			pools.liberarConnection(con);
+			rs.close();
+			ps.close();
+		}
+		
+		return usuario;
+	}
 	
 }

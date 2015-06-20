@@ -282,5 +282,53 @@ public Set<EscolaDeSamba> obterEscolaPorIntegrante(int idIntegrante)
 	}
 	
 	return escolas;
+}
+
+@Override
+public Set<EscolaDeSamba> obterEscolaPorTorcedor(int idTorcedor)
+		throws SQLException {
+	
+String sql = "SELECT * FROM samba u, torcedor_samba i WHERE i.torcedor= ? AND u.id = i.samba ORDER BY u.id";
+	
+	Set<EscolaDeSamba> escolas = null;
+	ResultSet rs = null;	
+	PreparedStatement ps = null;
+	 Connection con = null;
+	
+	try {
+		
+		con = pools.getConnection();
+		escolas = new HashSet<EscolaDeSamba>();
+		
+		ps = con.prepareStatement(sql);
+		ps.setLong(1, idTorcedor);
+		
+		
+		
+		rs = ps.executeQuery();
+		
+		while(rs.next()){
+			
+			EscolaDeSamba es = new EscolaDeSamba();
+			
+			es.setEmail(rs.getString("email"));
+			es.setCores(rs.getString("cores"));
+			es.setEnsaios(rs.getString("ensaio"));
+			es.setId(rs.getInt("id"));
+			es.setNome(rs.getString("nome"));
+			es.setPracinha(rs.getString("pracinha"));
+			
+			escolas.add(es);
+		}
+		
+	} catch (SQLException e) {
+		e.printStackTrace();
+	}finally{
+		
+		ps.close();
+		rs.close();
+		pools.liberarConnection(con);
+	}
+	return escolas;
 }	
 }

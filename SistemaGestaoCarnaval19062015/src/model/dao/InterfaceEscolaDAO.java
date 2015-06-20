@@ -14,6 +14,8 @@ public interface InterfaceEscolaDAO {
 	boolean incluir(EscolaDeSamba samba)throws SQLException;	
 	boolean alterar(EscolaDeSamba samba)throws SQLException;	
 	boolean excluir(Integer codigo)throws SQLException;
+	Set<EscolaDeSamba> obterEscolaPorTorcedor(int idTorcedor)
+			throws SQLException;
 	
 
 }

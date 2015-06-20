@@ -75,7 +75,7 @@ public class AjudadorDoCommand {
         mapaComandos.put("excluirIntegrante", new ExcluirIntegrante(new IntegranteDAO(pool)));
         mapaComandos.put("consultarIntegrante", new ConsultarIntegrante(new IntegranteDAO(pool)));
         
-        mapaComandos.put("consultarTorcedor", new ConsultarTorcedor(new TorcedorDAO(pool)));       
+        mapaComandos.put("consultarTorcedor", new ConsultarTorcedor(new TorcedorDAO(pool), new EscolaDAO(pool)));       
         mapaComandos.put("cadastrarTorcedor", new CadastrarTorcedor(new TorcedorDAO(pool), new EscolaDAO(pool)));
         
         mapaComandos.put("cadastrarJurados", new CadastrarJurados(new UsuarioDAO(pool)));

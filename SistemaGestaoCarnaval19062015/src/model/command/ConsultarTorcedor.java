@@ -6,16 +6,18 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import model.dao.InterfaceEscolaDAO;
 import model.dao.InterfaceTorcedorDAO;
-import model.negocio.Usuario;
 
 public class ConsultarTorcedor implements InterfaceCommand {
 
 	private InterfaceTorcedorDAO torcedorDAO;
+	private InterfaceEscolaDAO escolaDAO;
 	
-	public ConsultarTorcedor(InterfaceTorcedorDAO torcedorDAO) {
+	public ConsultarTorcedor(InterfaceTorcedorDAO torcedorDAO, InterfaceEscolaDAO escolaDAO) {
 		super();
 		this.torcedorDAO = torcedorDAO;
+		this.escolaDAO = escolaDAO;
 	}
 
 	@Override
@@ -24,8 +26,16 @@ public class ConsultarTorcedor implements InterfaceCommand {
 		HttpSession session = request.getSession();
 		request.setAttribute("titulo", "Consulta de Integrantes");
 		
-		try{
-			request.setAttribute("torcedores", torcedorDAO.consultarTorcedores(((Usuario) session.getAttribute("usuarioLogado")).getId()));
+		try{			
+			if(request.getParameter("codigo")!=null){
+			
+			if(request.getParameter("codigo").equals("cTorcedor")){
+                    request.setAttribute("torcedores", torcedorDAO.consultarTorcedoresPorEscolaDoIntegrante(Integer.valueOf(request.getParameter("id")))); 
+
+				
+			}}else{
+			request.setAttribute("torcedores", torcedorDAO.consultarTorcedores(Integer.valueOf(request.getParameter("id"))));
+			}
 		}catch(SQLException e) {
 			request.setAttribute("mensagem", "Não foi consultar "+ e.getMessage());
 		}
