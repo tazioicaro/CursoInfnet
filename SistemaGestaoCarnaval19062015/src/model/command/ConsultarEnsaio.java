@@ -42,7 +42,7 @@ public class ConsultarEnsaio implements InterfaceCommand {
 
 				Usuario integrante = (Usuario) request.getSession().getAttribute("usuarioLogado");
 				
-				Collection<EscolaDeSamba> escolas = (Collection<EscolaDeSamba>) escolaDAO.obterEscolaPorIntegrante(integrante.getTipo());
+				Collection<EscolaDeSamba> escolas = (Collection<EscolaDeSamba>) escolaDAO.obterEscolaPorIntegrante(Integer.valueOf(request.getParameter("id")));
 				
 				for(EscolaDeSamba escola: escolas){
 					

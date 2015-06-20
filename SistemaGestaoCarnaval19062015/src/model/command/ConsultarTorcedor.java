@@ -33,7 +33,9 @@ public class ConsultarTorcedor implements InterfaceCommand {
                     request.setAttribute("torcedores", torcedorDAO.consultarTorcedoresPorEscolaDoIntegrante(Integer.valueOf(request.getParameter("id")))); 
 
 				
-			}}else{
+			}			
+			
+			}else{
 			request.setAttribute("torcedores", torcedorDAO.consultarTorcedores(Integer.valueOf(request.getParameter("id"))));
 			}
 		}catch(SQLException e) {

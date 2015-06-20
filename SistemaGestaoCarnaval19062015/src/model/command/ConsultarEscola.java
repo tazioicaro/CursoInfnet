@@ -26,8 +26,32 @@ public class ConsultarEscola implements InterfaceCommand {
 		
 		
   try{	  
+	  if( request.getParameter("codigo") != null){
 	 
+	 if( request.getParameter("codigo").equals("cEscola")){
+		 
+		 request.setAttribute("escola", escolaDAO.obterEscolaPorIntegrante(Integer.valueOf((request.getParameter("id")))));
+		  
+	   request.setAttribute("exibirNome", "Escolas que você é Integrante "); 
+	 }
+	 
+	 else if( request.getParameter("codigo").equals("tEscola")){
+		 
+		 request.setAttribute("escola", escolaDAO.obterEscolaPorTorcedor(Integer.valueOf((request.getParameter("id")))));
+	 
+	    request.setAttribute("exibirNome", "Escolas do seu coração");
+	 }
+	 
+	  
+	  
+	  }else{
 	  request.setAttribute("escola", escolaDAO.obterEscolaDeSamba());
+	  
+	  request.setAttribute("exibirNome", "Escola de Samba Cadastradas");
+	  }
+	  
+	  
+	  
 	  
   }catch(SQLException e) {
 	  request.setAttribute("mensagem", "Não foi consultar "+ e.getMessage());

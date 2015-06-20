@@ -16,9 +16,9 @@
 <hr>
 <ul>
 	
-	<li style="list-style: square;"><a href="Controlador?opc=consultarEscola&codigo=cEscola" style="font-family: sans-serif; color: navy; font-size: 14px;" target="corpo">Consultar Lista de Escolas de Samba</a></li>
-	<li style="list-style: square;"><a href="Controlador?opc=consultarTorcedor" style="font-family: sans-serif; color: navy; font-size: 14px;" target="corpo">Consultar Torcedores</a></li>
-	<li style="list-style: square;"><a href="Controlador?opc=consultarEnsaio&codigo=cEnsaio" style="font-family: sans-serif; color: navy; font-size: 14px;" target="corpo">Consultar Ensaios</a></li>	
+	<li style="list-style: square;"><a href="Controlador?opc=consultarEscola&codigo=cEscola&id=${usuarioLogado.id}" style="font-family: sans-serif; color: navy; font-size: 14px;" target="corpo">Consultar Lista de Escolas de Samba</a></li>
+	<li style="list-style: square;"><a href="Controlador?opc=consultarTorcedor&codigo=cTorcedor&id=${usuarioLogado.id}" style="font-family: sans-serif; color: navy; font-size: 14px;" target="corpo">Consultar Torcedores</a></li>
+	<li style="list-style: square;"><a href="Controlador?opc=consultarEnsaio&codigo=cEnsaio&id=${usuarioLogado.id}" style="font-family: sans-serif; color: navy; font-size: 14px;" target="corpo">Consultar Ensaios</a></li>	
 
 </ul>
 </div>

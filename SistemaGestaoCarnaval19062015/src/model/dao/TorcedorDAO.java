@@ -170,7 +170,7 @@ private InterfacePool pools;
 		String sql ="SELECT distinct u.nome nome_torcedor, " +
 					"u.id, u.nome, u.email, u.senha, u.tipo_id " +
 					"from samba e, integrantes_samba ie, torcedor_samba te, usuario u " +
-					"where e.id = ie.samba_id and ie.integrante_id = ? and ie.samba_id = te.samba_id and te.torcedor_id = u.id "; 
+					"where e.id = ie.samba_id and ie.integrante_id = ? and ie.samba_id = te.samba and te.torcedor= u.id "; 
 
 		
 		Set<Usuario> usuario = null;
